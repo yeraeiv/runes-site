@@ -1,75 +1,661 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Рунически четения</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Рунически четения и диагностика</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-soft: #12121a;
+      --panel: rgba(18, 18, 26, 0.82);
+      --line: rgba(212, 175, 55, 0.24);
+      --gold: #d4af37;
+      --gold-soft: #f0db92;
+      --text: #f6f1df;
+      --muted: #c7bea0;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --radius: 24px;
+      --max-width: 1120px;
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0d0d0d;
-    color: #fff;
-    text-align: center;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-h1 {
-    color: gold;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-section {
-    padding: 40px 20px;
-}
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(212, 175, 55, 0.12), transparent 28%),
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05), transparent 18%),
+        radial-gradient(circle at 80% 0%, rgba(212, 175, 55, 0.08), transparent 22%),
+        linear-gradient(180deg, #08080c 0%, #101019 52%, #09090d 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-button {
-    padding: 10px 20px;
-    background: gold;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(212, 175, 55, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 90%);
+      opacity: 0.55;
+    }
 
-#rune {
-    margin-top: 20px;
-    font-size: 24px;
-    color: gold;
-}
-</style>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(10, 10, 15, 0.74);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.06em;
+      color: var(--gold-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-soft);
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-card,
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      width: min(100%, 860px);
+      padding: 64px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ";
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      letter-spacing: 0.35em;
+      color: rgba(240, 219, 146, 0.26);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 999px;
+      color: var(--gold-soft);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      margin: 0 0 16px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 8vw, 5rem);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      text-align: center;
+    }
+
+    .section-subtitle,
+    .hero p {
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-top: 18px;
+    }
+
+    .cta-row {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      background: linear-gradient(135deg, #c79f2e 0%, #f0db92 100%);
+      color: #111;
+      font-weight: 700;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.2);
+      cursor: pointer;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(212, 175, 55, 0.28);
+    }
+
+    .ghost-button {
+      background: transparent;
+      color: var(--gold-soft);
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .services-grid,
+    .prices-grid,
+    .steps-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      padding: 28px 24px;
+      height: 100%;
+      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(240, 219, 146, 0.4);
+      background: rgba(20, 20, 29, 0.94);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .price-tag {
+      margin-top: 18px;
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.08);
+      color: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      font-weight: 600;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 40px;
+    }
+
+    .rune-panel {
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .rune-symbol {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(4rem, 10vw, 6rem);
+      color: var(--gold-soft);
+      text-shadow: 0 0 22px rgba(212, 175, 55, 0.18);
+      margin-bottom: 10px;
+    }
+
+    .rune-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .rune-meaning {
+      color: var(--muted);
+      line-height: 1.8;
+      min-height: 88px;
+      margin: 0 auto 24px;
+      max-width: 56ch;
+    }
+
+    .how-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(212, 175, 55, 0.12);
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    .contact-box {
+      text-align: center;
+      padding: 40px 28px;
+      margin-top: 40px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0 0 18px;
+    }
+
+    .email-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.24);
+      background: rgba(212, 175, 55, 0.06);
+      color: var(--gold-soft);
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .footer {
+      padding: 26px 0 40px;
+      text-align: center;
+      color: rgba(199, 190, 160, 0.8);
+      font-size: 0.92rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .services-grid,
+      .prices-grid,
+      .steps-grid,
+      .split {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .split {
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 72px 0;
+      }
+
+      .nav {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 0.88rem;
+      }
+
+      .hero-card {
+        padding: 56px 22px 34px;
+      }
+
+      .services-grid,
+      .prices-grid,
+      .steps-grid,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .rune-panel,
+      .contact-box {
+        padding: 24px 20px;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .step-number {
+        margin-bottom: 4px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#home" class="brand">Рунически четения</a>
+      <nav class="nav-links">
+        <a href="#services">Услуги</a>
+        <a href="#prices">Цени</a>
+        <a href="#process">Как протича</a>
+        <a href="#daily-rune">Дневна руна</a>
+        <a href="#contact">Контакт</a>
+      </nav>
+    </div>
+  </header>
 
-<section>
-<h1>Рунически четения</h1>
-<p>Яснота, посока и дълбок анализ</p>
-</section>
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-card reveal">
+          <span class="eyebrow">Енергия, посока, прозрение</span>
+          <h1>Рунически четения и диагностика</h1>
+          <p>Яснота, посока и дълбок анализ чрез руническа система</p>
+          <div class="cta-row">
+            <a class="button" href="#contact">Запази час</a>
+            <a class="button ghost-button" href="#daily-rune">Изтегли руна</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section>
-<h2>Услуги</h2>
-<p>Любовен анализ</p>
-<p>Две воли</p>
-<p>9 свята</p>
-</section>
+    <section id="services">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Услуги</span>
+          <h2>Рунически насоки за важните теми</h2>
+          <p class="section-subtitle">Всяко четене е насочено към ясно разбиране на ситуацията, скритите влияния и следващите възможни стъпки.</p>
+        </div>
+        <div class="grid services-grid">
+          <article class="card reveal">
+            <div class="card-icon">ᚷ</div>
+            <h3>Любовен анализ</h3>
+            <p>Поглед върху динамиката между двама души, истинските намерения и емоционалния потенциал на връзката.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">ᚦ</div>
+            <h3>„Две воли“</h3>
+            <p>Сравнителен рунически прочит на две гледни точки, желания или вътрешни конфликти в конкретна ситуация.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">ᛉ</div>
+            <h3>„9 свята“ диагностика</h3>
+            <p>Дълбока диагностика на различни нива: емоционално, ментално, енергийно и житейско направление.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">ᛞ</div>
+            <h3>Дневен рунически вектор</h3>
+            <p>Кратко насочване за деня с акцент върху основната енергия, урок и най-добрия подход.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<section>
-<h2>Изтегли руна</h2>
-<button onclick="getRune()">Изтегли</button>
-<div id="rune"></div>
-</section>
+    <section id="prices">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Цени</span>
+          <h2>Ясни и достъпни варианти</h2>
+          <p class="section-subtitle">Избор между по-кратко четене и по-дълбок анализ според темата и нужната дълбочина.</p>
+        </div>
+        <div class="grid prices-grid">
+          <article class="card reveal">
+            <div class="card-icon">ᚠ</div>
+            <h3>Стандартно четене</h3>
+            <p>Подходящо за конкретен въпрос, кратка диагностика или избор между две възможности.</p>
+            <span class="price-tag">15 euro</span>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">ᚱ</div>
+            <h3>Дълбоки анализи</h3>
+            <p>Разгърнато тълкуване с повече руни, взаимовръзки и по-цялостен преглед на ситуацията.</p>
+            <span class="price-tag">25 euro</span>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">ᛟ</div>
+            <h3>Писмен формат</h3>
+            <p>Получаваш всичко в подреден и ясен текст, към който можеш да се върнеш по всяко време.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">ᛇ</div>
+            <h3>Личен подход</h3>
+            <p>Всяко четене е съобразено с твоя въпрос, контекст и нуждата от реална посока, а не общи фрази.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<script>
-const runes = [
-"Fehu","Uruz","Thurisaz","Ansuz","Raidho","Kenaz","Gebo","Wunjo",
-"Hagalaz","Nauthiz","Isa","Jera","Eihwaz","Perthro","Algiz","Sowilo",
-"Tiwaz","Berkana","Ehwaz","Mannaz","Laguz","Ingwaz","Dagaz","Othala"
-];
+    <section id="process">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Как протича</span>
+          <h2>Лесен и ясен процес</h2>
+          <p class="section-subtitle">Всичко е организирано така, че да получиш отговор без излишно усложнение и с достатъчно дълбочина.</p>
+        </div>
+        <div class="split">
+          <div class="card reveal">
+            <div class="how-list">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                  <h3>Пращаш въпрос</h3>
+                  <p>Споделяш темата или конкретния въпрос, върху който искаш да се направи рунически прочит.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                  <h3>Получаваш писмен анализ</h3>
+                  <p>Отговорът е структуриран, ясен и съобразен с твоята конкретна ситуация.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                  <h3>Включени са руни и подробно тълкуване</h3>
+                  <p>Ще видиш самите руни, тяхната символика и как работят заедно в твоя казус.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h3>Подход с внимание към детайла</h3>
+            <p>Руническото четене не е просто отговор „да“ или „не“, а карта на енергии, препятствия и потенциални посоки. Тук фокусът е върху смислен анализ, който да ти помогне да видиш по-ясно ситуацията си.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-function getRune() {
-    const random = runes[Math.floor(Math.random() * runes.length)];
-    document.getElementById("rune").innerText = random;
-}
-</script>
+    <section id="daily-rune">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Дневна руна</span>
+          <h2>Изтегли своя знак за деня</h2>
+          <p class="section-subtitle">Натисни бутона и получи руна от Elder Futhark, за да усетиш посоката и енергията на деня.</p>
+        </div>
+        <div class="card rune-panel reveal">
+          <div class="rune-symbol" id="runeSymbol">ᛟ</div>
+          <div class="rune-name" id="runeName">Очаква те руна</div>
+          <p class="rune-meaning" id="runeMeaning">Тълкуване: Натисни „Изтегли руна“, за да получиш своя дневен символ и кратко послание.</p>
+          <button class="button" id="drawRuneButton" type="button">Изтегли руна</button>
+        </div>
+      </div>
+    </section>
 
+    <section id="contact">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Контакт</span>
+          <h2>Запази своя час</h2>
+          <p class="section-subtitle">Пиши ми на лично съобщение или email, ако искаш лично четене, диагностика или насока по конкретен въпрос.</p>
+        </div>
+        <div class="contact-box card reveal">
+          <p>Пиши ми на лично съобщение или email</p>
+          <a class="email-pill" href="mailto:runi@example.com">runi@example.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">Рунически четения и диагностика</div>
+  </footer>
+
+  <script>
+    const runes = [
+      { symbol: "ᚠ", name: "Fehu", meaning: "Тълкуване: Поток, ресурс и нова жизнена енергия. Денят е подходящ за действие, материален напредък и ясни намерения." },
+      { symbol: "ᚢ", name: "Uruz", meaning: "Тълкуване: Сила, устойчивост и вътрешна мощ. Довери се на инстинкта си и не подценявай собствения си ресурс." },
+      { symbol: "ᚦ", name: "Thurisaz", meaning: "Тълкуване: Пауза преди важен ход. Нужно е да пазиш границите си и да действаш осъзнато, а не прибързано." },
+      { symbol: "ᚨ", name: "Ansuz", meaning: "Тълкуване: Послание, разговор или знак. Обърни внимание на думите, сънищата и синхроничностите около теб." },
+      { symbol: "ᚱ", name: "Raidho", meaning: "Тълкуване: Движение, път и подреждане. Денят носи напредък, ако следваш естествения ритъм, а не хаоса." },
+      { symbol: "ᚲ", name: "Kenaz", meaning: "Тълкуване: Озарение и яснота. Нещо скрито може да се освети и да ти помогне да видиш правилната посока." },
+      { symbol: "ᚷ", name: "Gebo", meaning: "Тълкуване: Обмен, партньорство и баланс. Денят е силен за взаимност, честност и правилно даване и получаване." },
+      { symbol: "ᚹ", name: "Wunjo", meaning: "Тълкуване: Хармония и облекчение. Настъпва по-мека енергия, в която можеш да се свържеш с радостта и спокойствието." },
+      { symbol: "ᚺ", name: "Hagalaz", meaning: "Тълкуване: Неочаквана промяна, която разчиства. Ако нещо се разклати, то прави място за по-истинска структура." },
+      { symbol: "ᚾ", name: "Nauthiz", meaning: "Тълкуване: Ограничение, което учи на търпение. Днес е важно да различиш нуждата от импулса." },
+      { symbol: "ᛁ", name: "Isa", meaning: "Тълкуване: Застой, мълчание и наблюдение. Денят иска покой, дисциплина и повече вътрешно слушане." },
+      { symbol: "ᛃ", name: "Jera", meaning: "Тълкуване: Плод на усилията и естествен цикъл. Резултатите идват, но в правилното за тях време." },
+      { symbol: "ᛇ", name: "Eihwaz", meaning: "Тълкуване: Издръжливост, дълбока трансформация и вътрешен гръбнак. Остани стабилен в прехода." },
+      { symbol: "ᛈ", name: "Perthro", meaning: "Тълкуване: Тайна, интуиция и невидими влияния. Днес не всичко е очевидно, но усетът ти ще те води вярно." },
+      { symbol: "ᛉ", name: "Algiz", meaning: "Тълкуване: Защита и по-висша подкрепа. Денят е подходящ да укрепиш личното си пространство и да следваш вътрешния компас." },
+      { symbol: "ᛋ", name: "Sowilo", meaning: "Тълкуване: Светлина, успех и жизнен импулс. Имаш шанс да напреднеш смело и уверено." },
+      { symbol: "ᛏ", name: "Tiwaz", meaning: "Тълкуване: Чест, решение и целенасочена воля. Избери това, което е правилно, а не само лесно." },
+      { symbol: "ᛒ", name: "Berkano", meaning: "Тълкуване: Растеж, нежност и ново начало. Денят носи мека, но силна енергия за подхранване и развитие." },
+      { symbol: "ᛖ", name: "Ehwaz", meaning: "Тълкуване: Напредък чрез доверие и синхрон. Движението е по-лесно, когато има правилен съюз и ритъм." },
+      { symbol: "ᛗ", name: "Mannaz", meaning: "Тълкуване: Осъзнаване на себе си чрез другите. Важна е зрелостта в комуникацията и ясното присъствие." },
+      { symbol: "ᛚ", name: "Laguz", meaning: "Тълкуване: Интуиция, поток и емоционална дълбочина. Довери се на това, което усещаш под повърхността." },
+      { symbol: "ᛜ", name: "Ingwaz", meaning: "Тълкуване: Събиране на енергия и вътрешно узряване. Нещо значимо се подготвя, макар още да не е напълно видимо." },
+      { symbol: "ᛞ", name: "Dagaz", meaning: "Тълкуване: Пробив, нова светлина и смяна на перспектива. Денят носи шанс за вътрешно или външно просветление." },
+      { symbol: "ᛟ", name: "Othala", meaning: "Тълкуване: Корени, наследство и лична основа. Върни се към това, което е истински ценно и устойчиво за теб." }
+    ];
+
+    const drawRuneButton = document.getElementById("drawRuneButton");
+    const runeSymbol = document.getElementById("runeSymbol");
+    const runeName = document.getElementById("runeName");
+    const runeMeaning = document.getElementById("runeMeaning");
+
+    drawRuneButton.addEventListener("click", () => {
+      const selectedRune = runes[Math.floor(Math.random() * runes.length)];
+      runeSymbol.textContent = selectedRune.symbol;
+      runeName.textContent = selectedRune.name;
+      runeMeaning.textContent = selectedRune.meaning;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
 </body>
 </html>
