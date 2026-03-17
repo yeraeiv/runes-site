@@ -1,1 +1,75 @@
-index.html
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Рунически четения</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+    text-align: center;
+}
+
+h1 {
+    color: gold;
+}
+
+section {
+    padding: 40px 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background: gold;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#rune {
+    margin-top: 20px;
+    font-size: 24px;
+    color: gold;
+}
+</style>
+
+</head>
+<body>
+
+<section>
+<h1>Рунически четения</h1>
+<p>Яснота, посока и дълбок анализ</p>
+</section>
+
+<section>
+<h2>Услуги</h2>
+<p>Любовен анализ</p>
+<p>Две воли</p>
+<p>9 свята</p>
+</section>
+
+<section>
+<h2>Изтегли руна</h2>
+<button onclick="getRune()">Изтегли</button>
+<div id="rune"></div>
+</section>
+
+<script>
+const runes = [
+"Fehu","Uruz","Thurisaz","Ansuz","Raidho","Kenaz","Gebo","Wunjo",
+"Hagalaz","Nauthiz","Isa","Jera","Eihwaz","Perthro","Algiz","Sowilo",
+"Tiwaz","Berkana","Ehwaz","Mannaz","Laguz","Ingwaz","Dagaz","Othala"
+];
+
+function getRune() {
+    const random = runes[Math.floor(Math.random() * runes.length)];
+    document.getElementById("rune").innerText = random;
+}
+</script>
+
+</body>
+</html>
