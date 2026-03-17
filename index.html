@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -7,7 +8,6 @@
   <style>
     :root {
       --bg: #0a0a0f;
-      --bg-soft: #12121a;
       --panel: rgba(18, 18, 26, 0.82);
       --line: rgba(212, 175, 55, 0.24);
       --gold: #d4af37;
@@ -18,15 +18,8 @@
       --radius: 24px;
       --max-width: 1120px;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -39,7 +32,6 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-
     body::before {
       content: "";
       position: fixed;
@@ -52,398 +44,140 @@
       mask-image: radial-gradient(circle at center, black 45%, transparent 90%);
       opacity: 0.55;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max-width));
-      margin: 0 auto;
-    }
-
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(calc(100% - 32px), var(--max-width)); margin: 0 auto; }
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(10, 10, 15, 0.74);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px);
+      background: rgba(10, 10, 15, 0.74); border-bottom: 1px solid rgba(212, 175, 55, 0.12);
     }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 16px 0;
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 0; }
+    .brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--gold-soft); }
+    .nav-group { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; font-size: 0.95rem; color: var(--muted); }
+    .nav-links a, .lang-btn { transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease; }
+    .nav-links a:hover { color: var(--gold-soft); }
+    .lang-switcher {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px;
+      border: 1px solid rgba(212, 175, 55, 0.16); border-radius: 999px; background: rgba(212, 175, 55, 0.05);
     }
-
-    .brand {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.06em;
-      color: var(--gold-soft);
+    .lang-btn {
+      border: 0; background: transparent; color: var(--muted); padding: 8px 12px; border-radius: 999px;
+      cursor: pointer; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold-soft);
-    }
-
-    section {
-      padding: 88px 0;
-    }
-
-    .hero {
-      min-height: calc(100vh - 80px);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero-card,
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      width: min(100%, 860px);
-      padding: 64px 28px;
-      position: relative;
-      overflow: hidden;
-    }
-
+    .lang-btn.active { background: linear-gradient(135deg, #c79f2e 0%, #f0db92 100%); color: #111; }
+    section { padding: 88px 0; }
+    .hero { min-height: calc(100vh - 80px); display: grid; place-items: center; text-align: center; }
+    .hero-card, .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero-card { width: min(100%, 860px); padding: 64px 28px; position: relative; overflow: hidden; }
     .hero-card::before {
-      content: "ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ";
-      position: absolute;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      letter-spacing: 0.35em;
-      color: rgba(240, 219, 146, 0.26);
-      font-size: clamp(1rem, 2vw, 1.2rem);
+      content: "ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ"; position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+      letter-spacing: 0.35em; color: rgba(240, 219, 146, 0.26); font-size: clamp(1rem, 2vw, 1.2rem);
     }
-
     .eyebrow {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 8px 14px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 999px;
-      color: var(--gold-soft);
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      display: inline-block; margin-bottom: 14px; padding: 8px 14px; border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 999px; color: var(--gold-soft); font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
     }
-
-    h1, h2, h3 {
-      font-family: Georgia, "Times New Roman", serif;
-      margin: 0 0 16px;
-      line-height: 1.05;
-      font-weight: 600;
-    }
-
-    h1 {
-      font-size: clamp(2.6rem, 8vw, 5rem);
-    }
-
-    h2 {
-      font-size: clamp(2rem, 5vw, 3.1rem);
-      text-align: center;
-    }
-
-    .section-subtitle,
-    .hero p {
-      color: var(--muted);
-      max-width: 720px;
-      margin: 0 auto;
-      line-height: 1.8;
-      font-size: 1.05rem;
-    }
-
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      margin-top: 18px;
-    }
-
-    .cta-row {
-      margin-top: 32px;
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; margin: 0 0 16px; line-height: 1.05; font-weight: 600; }
+    h1 { font-size: clamp(2.6rem, 8vw, 5rem); }
+    h2 { font-size: clamp(2rem, 5vw, 3.1rem); text-align: center; }
+    .section-subtitle, .hero p { color: var(--muted); max-width: 720px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem; }
+    .hero p { font-size: clamp(1rem, 2vw, 1.2rem); margin-top: 18px; }
+    .cta-row { margin-top: 32px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
     .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      background: linear-gradient(135deg, #c79f2e 0%, #f0db92 100%);
-      color: #111;
-      font-weight: 700;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.2);
-      cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; padding: 14px 24px; border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.45); background: linear-gradient(135deg, #c79f2e 0%, #f0db92 100%);
+      color: #111; font-weight: 700; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 12px 30px rgba(212, 175, 55, 0.2); cursor: pointer;
     }
-
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 36px rgba(212, 175, 55, 0.28);
+    .button:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(212, 175, 55, 0.28); }
+    .ghost-button { background: transparent; color: var(--gold-soft); }
+    .grid { display: grid; gap: 22px; margin-top: 40px; }
+    .services-grid, .steps-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card { padding: 28px 24px; height: 100%; transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease; }
+    .card:hover { transform: translateY(-6px); border-color: rgba(240, 219, 146, 0.4); background: rgba(20, 20, 29, 0.94); }
+    .card-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 14px; }
+    .card h3 { font-size: 1.7rem; margin-bottom: 10px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.75; }
+    .examples-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .example-card { overflow: hidden; padding: 0; }
+    .example-visual {
+      min-height: 220px; display: grid; place-items: center; padding: 24px; border-bottom: 1px solid rgba(212, 175, 55, 0.14);
+      background: radial-gradient(circle at top, rgba(212, 175, 55, 0.16), transparent 36%), linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
     }
-
-    .ghost-button {
-      background: transparent;
-      color: var(--gold-soft);
+    .example-placeholder {
+      width: 100%; min-height: 172px; border: 1px dashed rgba(240, 219, 146, 0.28); border-radius: 20px;
+      display: grid; place-items: center; text-align: center; padding: 20px; color: var(--gold-soft);
+      font-family: Georgia, "Times New Roman", serif; line-height: 1.5; background: rgba(10, 10, 15, 0.28);
     }
-
-    .grid {
-      display: grid;
-      gap: 22px;
-      margin-top: 40px;
+    .example-gallery { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .example-media {
+      min-height: 220px; border-radius: 18px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.16);
+      background: rgba(10, 10, 15, 0.24); position: relative;
     }
-
-    .services-grid,
-    .prices-grid,
-    .steps-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+    .example-image { width: 100%; height: 100%; min-height: 220px; object-fit: cover; display: block; }
+    .example-media .example-placeholder { min-height: 220px; border: 0; border-radius: 0; display: none; font-size: 0.95rem; }
+    .example-content { padding: 28px 24px; }
+    .example-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .example-chip {
+      padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(212, 175, 55, 0.18);
+      background: rgba(212, 175, 55, 0.06); color: var(--gold-soft); font-size: 0.9rem;
     }
-
-    .card {
-      padding: 28px 24px;
-      height: 100%;
-      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(240, 219, 146, 0.4);
-      background: rgba(20, 20, 29, 0.94);
-    }
-
-    .card-icon {
-      font-size: 1.5rem;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
-
-    .card h3 {
-      font-size: 1.7rem;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .price-tag {
-      margin-top: 18px;
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(212, 175, 55, 0.08);
-      color: var(--gold-soft);
-      border: 1px solid rgba(212, 175, 55, 0.16);
-      font-weight: 600;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-top: 40px;
-    }
-
-    .rune-panel {
-      padding: 32px 28px;
-      text-align: center;
-    }
-
-    .rune-symbol {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(4rem, 10vw, 6rem);
-      color: var(--gold-soft);
-      text-shadow: 0 0 22px rgba(212, 175, 55, 0.18);
-      margin-bottom: 10px;
-    }
-
-    .rune-name {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2rem;
-      margin-bottom: 14px;
-    }
-
-    .rune-meaning {
-      color: var(--muted);
-      line-height: 1.8;
-      min-height: 88px;
-      margin: 0 auto 24px;
-      max-width: 56ch;
-    }
-
-    .how-list {
-      display: grid;
-      gap: 18px;
-    }
-
+    .split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; align-items: stretch; margin-top: 40px; }
+    .rune-panel { padding: 32px 28px; text-align: center; }
+    .rune-symbol { font-family: Georgia, "Times New Roman", serif; font-size: clamp(4rem, 10vw, 6rem); color: var(--gold-soft); text-shadow: 0 0 22px rgba(212, 175, 55, 0.18); margin-bottom: 10px; }
+    .rune-name { font-family: Georgia, "Times New Roman", serif; font-size: 2rem; margin-bottom: 14px; }
+    .rune-meaning { color: var(--muted); line-height: 1.8; min-height: 88px; margin: 0 auto 24px; max-width: 56ch; }
+    .how-list { display: grid; gap: 18px; }
     .step {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 16px;
-      align-items: start;
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(212, 175, 55, 0.12);
+      display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; padding: 20px;
+      border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(212, 175, 55, 0.12);
     }
-
     .step-number {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      border: 1px solid rgba(212, 175, 55, 0.28);
-      color: var(--gold-soft);
-      font-weight: 700;
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.28); color: var(--gold-soft); font-weight: 700;
     }
-
-    .contact-box {
-      text-align: center;
-      padding: 40px 28px;
-      margin-top: 40px;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      line-height: 1.8;
-      margin: 0 0 18px;
-    }
-
+    .contact-box { text-align: center; padding: 40px 28px; margin-top: 40px; }
+    .contact-box p { color: var(--muted); line-height: 1.8; margin: 0 0 18px; }
     .email-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.24);
-      background: rgba(212, 175, 55, 0.06);
-      color: var(--gold-soft);
-      font-weight: 600;
-      word-break: break-word;
+      display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.24); background: rgba(212, 175, 55, 0.06); color: var(--gold-soft); font-weight: 600; word-break: break-word;
     }
-
-    .footer {
-      padding: 26px 0 40px;
-      text-align: center;
-      color: rgba(199, 190, 160, 0.8);
-      font-size: 0.92rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    .footer { padding: 26px 0 40px; text-align: center; color: rgba(199, 190, 160, 0.8); font-size: 0.92rem; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     @media (max-width: 920px) {
-      .services-grid,
-      .prices-grid,
-      .steps-grid,
-      .split {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .split {
-        align-items: start;
-      }
+      .services-grid, .steps-grid, .split, .examples-grid { grid-template-columns: 1fr 1fr; }
     }
-
     @media (max-width: 640px) {
-      section {
-        padding: 72px 0;
-      }
-
-      .nav {
-        flex-direction: column;
-      }
-
-      .nav-links {
-        gap: 12px;
-        font-size: 0.88rem;
-      }
-
-      .hero-card {
-        padding: 56px 22px 34px;
-      }
-
-      .services-grid,
-      .prices-grid,
-      .steps-grid,
-      .split {
-        grid-template-columns: 1fr;
-      }
-
-      .card,
-      .rune-panel,
-      .contact-box {
-        padding: 24px 20px;
-      }
-
-      .step {
-        grid-template-columns: 1fr;
-      }
-
-      .step-number {
-        margin-bottom: 4px;
-      }
+      section { padding: 72px 0; }
+      .nav, .nav-group { flex-direction: column; }
+      .nav-links { gap: 12px; font-size: 0.88rem; }
+      .hero-card { padding: 56px 22px 34px; }
+      .services-grid, .steps-grid, .split, .examples-grid, .example-gallery { grid-template-columns: 1fr; }
+      .card, .rune-panel, .contact-box { padding: 24px 20px; }
+      .step { grid-template-columns: 1fr; }
+      .step-number { margin-bottom: 4px; }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a href="#home" class="brand">Рунически четения</a>
-      <nav class="nav-links">
-        <a href="#services">Услуги</a>
-        <a href="#prices">Цени</a>
-        <a href="#process">Как протича</a>
-        <a href="#daily-rune">Дневна руна</a>
-        <a href="#contact">Контакт</a>
-      </nav>
+      <a href="#home" class="brand" data-i18n="brand">Рунически четения</a>
+      <div class="nav-group">
+        <nav class="nav-links">
+          <a href="#services" data-i18n="nav_services">Услуги</a>
+          <a href="#examples" data-i18n="nav_examples">Примерни четения</a>
+          <a href="#process" data-i18n="nav_process">Как протича</a>
+          <a href="#daily-rune" data-i18n="nav_daily">Дневна руна</a>
+          <a href="#contact" data-i18n="nav_contact">Контакт</a>
+        </nav>
+        <div class="lang-switcher" aria-label="Language switcher">
+          <button class="lang-btn active" type="button" data-lang="bg">BG</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+          <button class="lang-btn" type="button" data-lang="ro">RO</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -451,12 +185,12 @@
     <section class="hero" id="home">
       <div class="container">
         <div class="hero-card reveal">
-          <span class="eyebrow">Енергия, посока, прозрение</span>
-          <h1>Рунически четения и диагностика</h1>
-          <p>Яснота, посока и дълбок анализ чрез руническа система</p>
+          <span class="eyebrow" data-i18n="hero_eyebrow">Енергия, посока, прозрение</span>
+          <h1 data-i18n="hero_title">Рунически четения и диагностика</h1>
+          <p data-i18n="hero_desc">Яснота, посока и дълбок анализ чрез руническа система</p>
           <div class="cta-row">
-            <a class="button" href="#contact">Запази час</a>
-            <a class="button ghost-button" href="#daily-rune">Изтегли руна</a>
+            <a class="button" href="#contact" data-i18n="hero_cta">Запази час</a>
+            <a class="button ghost-button" href="#daily-rune" data-i18n="hero_draw">Изтегли руна</a>
           </div>
         </div>
       </div>
@@ -465,64 +199,54 @@
     <section id="services">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Услуги</span>
-          <h2>Рунически насоки за важните теми</h2>
-          <p class="section-subtitle">Всяко четене е насочено към ясно разбиране на ситуацията, скритите влияния и следващите възможни стъпки.</p>
+          <span class="eyebrow" data-i18n="services_eyebrow">Услуги</span>
+          <h2 data-i18n="services_title">Рунически насоки за важните теми</h2>
+          <p class="section-subtitle" data-i18n="services_desc">Всяко четене е насочено към ясно разбиране на ситуацията, скритите влияния и следващите възможни стъпки.</p>
         </div>
         <div class="grid services-grid">
-          <article class="card reveal">
-            <div class="card-icon">ᚷ</div>
-            <h3>Любовен анализ</h3>
-            <p>Поглед върху динамиката между двама души, истинските намерения и емоционалния потенциал на връзката.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon">ᚦ</div>
-            <h3>„Две воли“</h3>
-            <p>Сравнителен рунически прочит на две гледни точки, желания или вътрешни конфликти в конкретна ситуация.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon">ᛉ</div>
-            <h3>„9 свята“ диагностика</h3>
-            <p>Дълбока диагностика на различни нива: емоционално, ментално, енергийно и житейско направление.</p>
-          </article>
-          <article class="card reveal">
-            <div class="card-icon">ᛞ</div>
-            <h3>Дневен рунически вектор</h3>
-            <p>Кратко насочване за деня с акцент върху основната енергия, урок и най-добрия подход.</p>
-          </article>
+          <article class="card reveal"><div class="card-icon">ᚷ</div><h3 data-i18n="service_1_title">Събитийна линия</h3><p data-i18n="service_1_desc">Проследява движението между двама души: настояща енергия, възможно развитие, реални действия и посоката на връзката.</p></article>
+          <article class="card reveal"><div class="card-icon">ᚦ</div><h3 data-i18n="service_2_title">„Две воли“</h3><p data-i18n="service_2_desc">Сравнителен рунически прочит на две гледни точки, желания или вътрешни конфликти в конкретна ситуация.</p></article>
+          <article class="card reveal"><div class="card-icon">ᛉ</div><h3 data-i18n="service_3_title">„9 свята“ диагностика</h3><p data-i18n="service_3_desc">Дълбока диагностика на различни нива: емоционално, ментално, енергийно и житейско направление.</p></article>
+          <article class="card reveal"><div class="card-icon">ᛞ</div><h3 data-i18n="service_4_title">Дневен рунически вектор</h3><p data-i18n="service_4_desc">Кратко насочване за деня с акцент върху основната енергия, урок и най-добрия подход.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="prices">
+    <section id="examples">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Цени</span>
-          <h2>Ясни и достъпни варианти</h2>
-          <p class="section-subtitle">Избор между по-кратко четене и по-дълбок анализ според темата и нужната дълбочина.</p>
+          <span class="eyebrow" data-i18n="examples_eyebrow">Примерни четения</span>
+          <h2 data-i18n="examples_title">Визуални примери за твоите услуги</h2>
+          <p class="section-subtitle" data-i18n="examples_desc">Тук можеш да показваш примерни подредби, откъси от анализи или снимки от реални четения.</p>
         </div>
-        <div class="grid prices-grid">
-          <article class="card reveal">
-            <div class="card-icon">ᚠ</div>
-            <h3>Стандартно четене</h3>
-            <p>Подходящо за конкретен въпрос, кратка диагностика или избор между две възможности.</p>
-            <span class="price-tag">15 euro</span>
+        <div class="grid examples-grid">
+          <article class="card example-card reveal">
+            <div class="example-visual"><div class="example-gallery">
+              <div class="example-media"><img class="example-image" src="sabitiyna-liniya-1.jpg" alt="Събитийна линия между двама - описание" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>sabitiyna-liniya-1.jpg</div></div>
+              <div class="example-media"><img class="example-image" src="sabitiyna-liniya-2.jpg" alt="Събитийна линия между двама - послание" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>sabitiyna-liniya-2.jpg</div></div>
+              <div class="example-media"><img class="example-image" src="sabitiyna-liniya-3.jpg" alt="Събитийна линия между двама - настояща енергия" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>sabitiyna-liniya-3.jpg</div></div>
+            </div></div>
+            <div class="example-content"><h3 data-i18n="ex_1_title">Събитийна линия между двама</h3><p data-i18n="ex_1_desc">Показва как се оформя линията на събитията между двама души: намерение, движение, активиране на реално действие и възможен резултат.</p><div class="example-meta"><span class="example-chip" data-i18n="chip_3_visuals">3 примерни визии</span><span class="example-chip" data-i18n="chip_ready_photos">Готово за снимки</span></div></div>
           </article>
-          <article class="card reveal">
-            <div class="card-icon">ᚱ</div>
-            <h3>Дълбоки анализи</h3>
-            <p>Разгърнато тълкуване с повече руни, взаимовръзки и по-цялостен преглед на ситуацията.</p>
-            <span class="price-tag">25 euro</span>
+          <article class="card example-card reveal">
+            <div class="example-visual"><div class="example-gallery">
+              <div class="example-media"><img class="example-image" src="dve-voli-1.jpg" alt="Две воли - енергийна динамика" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>dve-voli-1.jpg</div></div>
+              <div class="example-media"><img class="example-image" src="dve-voli-2.jpg" alt="Две воли и Орлог - анализ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>dve-voli-2.jpg</div></div>
+              <div class="example-media"><img class="example-image" src="dve-voli-3.jpg" alt="Любовен рунически анализ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>dve-voli-3.jpg</div></div>
+            </div></div>
+            <div class="example-content"><h3 data-i18n="ex_2_title">„Две воли“</h3><p data-i18n="ex_2_desc">Навлиза по-дълбоко в полето между двама души: личната воля, взаимното привличане, скритата нишка помежду им и посоката на развитие.</p><div class="example-meta"><span class="example-chip" data-i18n="chip_3_visuals">3 примерни визии</span><span class="example-chip" data-i18n="chip_ready_photos">Готово за снимки</span></div></div>
           </article>
-          <article class="card reveal">
-            <div class="card-icon">ᛟ</div>
-            <h3>Писмен формат</h3>
-            <p>Получаваш всичко в подреден и ясен текст, към който можеш да се върнеш по всяко време.</p>
+          <article class="card example-card reveal">
+            <div class="example-visual"><div class="example-gallery">
+              <div class="example-media"><img class="example-image" src="9-svyata-1.jpg" alt="9 свята - процес и перспектива" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>9-svyata-1.jpg</div></div>
+              <div class="example-media"><img class="example-image" src="9-svyata-2.jpg" alt="Метод 9-те свята" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>9-svyata-2.jpg</div></div>
+              <div class="example-media"><img class="example-image" src="9-svyata-3.jpg" alt="9-те свята - архетипна руническа диагностика" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>9-svyata-3.jpg</div></div>
+            </div></div>
+            <div class="example-content"><h3 data-i18n="ex_3_title">„9 свята“ диагностика</h3><p data-i18n="ex_3_desc">Архетипна руническа диагностика, която разглежда различни нива на преживяването като жива карта на процесите, напрежението, движението и вътрешната трансформация.</p><div class="example-meta"><span class="example-chip" data-i18n="chip_3_visuals">3 примерни визии</span><span class="example-chip" data-i18n="chip_ready_photos">Готово за снимки</span></div></div>
           </article>
-          <article class="card reveal">
-            <div class="card-icon">ᛇ</div>
-            <h3>Личен подход</h3>
-            <p>Всяко четене е съобразено с твоя въпрос, контекст и нуждата от реална посока, а не общи фрази.</p>
+          <article class="card example-card reveal">
+            <div class="example-visual"><div class="example-media" style="width: 100%;"><img class="example-image" src="dneven-vektor.jpg" alt="Дневен рунически вектор" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"><div class="example-placeholder"><span data-i18n="add_file">Добави файла</span><br>dneven-vektor.jpg</div></div></div>
+            <div class="example-content"><h3 data-i18n="ex_4_title">Дневен рунически вектор</h3><p data-i18n="ex_4_desc">Кратък визуален пример за дневна руна, енергията на деня и насоката, която се открива в конкретния момент.</p><div class="example-meta"><span class="example-chip" data-i18n="chip_one_visual">Една примерна визия</span><span class="example-chip" data-i18n="chip_ready_photo">Готово за снимка</span></div></div>
           </article>
         </div>
       </div>
@@ -531,40 +255,17 @@
     <section id="process">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Как протича</span>
-          <h2>Лесен и ясен процес</h2>
-          <p class="section-subtitle">Всичко е организирано така, че да получиш отговор без излишно усложнение и с достатъчно дълбочина.</p>
+          <span class="eyebrow" data-i18n="process_eyebrow">Как протича</span>
+          <h2 data-i18n="process_title">Лесен и ясен процес</h2>
+          <p class="section-subtitle" data-i18n="process_desc">Всичко е организирано така, че да получиш отговор без излишно усложнение и с достатъчно дълбочина.</p>
         </div>
         <div class="split">
-          <div class="card reveal">
-            <div class="how-list">
-              <div class="step">
-                <div class="step-number">1</div>
-                <div>
-                  <h3>Пращаш въпрос</h3>
-                  <p>Споделяш темата или конкретния въпрос, върху който искаш да се направи рунически прочит.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-number">2</div>
-                <div>
-                  <h3>Получаваш писмен анализ</h3>
-                  <p>Отговорът е структуриран, ясен и съобразен с твоята конкретна ситуация.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-number">3</div>
-                <div>
-                  <h3>Включени са руни и подробно тълкуване</h3>
-                  <p>Ще видиш самите руни, тяхната символика и как работят заедно в твоя казус.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card reveal">
-            <h3>Подход с внимание към детайла</h3>
-            <p>Руническото четене не е просто отговор „да“ или „не“, а карта на енергии, препятствия и потенциални посоки. Тук фокусът е върху смислен анализ, който да ти помогне да видиш по-ясно ситуацията си.</p>
-          </div>
+          <div class="card reveal"><div class="how-list">
+            <div class="step"><div class="step-number">1</div><div><h3 data-i18n="step_1_title">Пращаш въпрос</h3><p data-i18n="step_1_desc">Споделяш темата или конкретния въпрос, върху който искаш да се направи рунически прочит.</p></div></div>
+            <div class="step"><div class="step-number">2</div><div><h3 data-i18n="step_2_title">Получаваш писмен анализ</h3><p data-i18n="step_2_desc">Отговорът е структуриран, ясен и съобразен с твоята конкретна ситуация.</p></div></div>
+            <div class="step"><div class="step-number">3</div><div><h3 data-i18n="step_3_title">Включени са руни и подробно тълкуване</h3><p data-i18n="step_3_desc">Ще видиш самите руни, тяхната символика и как работят заедно в твоя казус.</p></div></div>
+          </div></div>
+          <div class="card reveal"><h3 data-i18n="detail_title">Подход с внимание към детайла</h3><p data-i18n="detail_desc">Руническото четене не е просто отговор „да“ или „не“, а карта на енергии, препятствия и потенциални посоки. Тук фокусът е върху смислен анализ, който да ти помогне да видиш по-ясно ситуацията си.</p></div>
         </div>
       </div>
     </section>
@@ -572,15 +273,15 @@
     <section id="daily-rune">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Дневна руна</span>
-          <h2>Изтегли своя знак за деня</h2>
-          <p class="section-subtitle">Натисни бутона и получи руна от Elder Futhark, за да усетиш посоката и енергията на деня.</p>
+          <span class="eyebrow" data-i18n="daily_eyebrow">Дневна руна</span>
+          <h2 data-i18n="daily_title">Изтегли своя знак за деня</h2>
+          <p class="section-subtitle" data-i18n="daily_desc">Натисни бутона и получи руна от Elder Futhark, за да усетиш посоката и енергията на деня.</p>
         </div>
         <div class="card rune-panel reveal">
           <div class="rune-symbol" id="runeSymbol">ᛟ</div>
           <div class="rune-name" id="runeName">Очаква те руна</div>
           <p class="rune-meaning" id="runeMeaning">Тълкуване: Натисни „Изтегли руна“, за да получиш своя дневен символ и кратко послание.</p>
-          <button class="button" id="drawRuneButton" type="button">Изтегли руна</button>
+          <button class="button" id="drawRuneButton" type="button" data-i18n="draw_rune_btn">Изтегли руна</button>
         </div>
       </div>
     </section>
@@ -588,61 +289,144 @@
     <section id="contact">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Контакт</span>
-          <h2>Запази своя час</h2>
-          <p class="section-subtitle">Пиши ми на лично съобщение или email, ако искаш лично четене, диагностика или насока по конкретен въпрос.</p>
+          <span class="eyebrow" data-i18n="contact_eyebrow">Контакт</span>
+          <h2 data-i18n="contact_title">Запази своя час</h2>
+          <p class="section-subtitle" data-i18n="contact_desc">Пиши ми на лично съобщение или email, ако искаш лично четене, диагностика или насока по конкретен въпрос.</p>
         </div>
-        <div class="contact-box card reveal">
-          <p>Пиши ми на лично съобщение или email</p>
-          <a class="email-pill" href="mailto:runi@example.com">runi@example.com</a>
-        </div>
+        <div class="contact-box card"><p data-i18n="contact_line">Пиши ми на лично съобщение или email</p><a class="email-pill" href="mailto:yeraeiv@yahoo.com">yeraeiv@yahoo.com</a></div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">Рунически четения и диагностика</div>
-  </footer>
+  <footer class="footer"><div class="container" data-i18n="footer">Рунически четения и диагностика</div></footer>
 
   <script>
-    const runes = [
-      { symbol: "ᚠ", name: "Fehu", meaning: "Тълкуване: Поток, ресурс и нова жизнена енергия. Денят е подходящ за действие, материален напредък и ясни намерения." },
-      { symbol: "ᚢ", name: "Uruz", meaning: "Тълкуване: Сила, устойчивост и вътрешна мощ. Довери се на инстинкта си и не подценявай собствения си ресурс." },
-      { symbol: "ᚦ", name: "Thurisaz", meaning: "Тълкуване: Пауза преди важен ход. Нужно е да пазиш границите си и да действаш осъзнато, а не прибързано." },
-      { symbol: "ᚨ", name: "Ansuz", meaning: "Тълкуване: Послание, разговор или знак. Обърни внимание на думите, сънищата и синхроничностите около теб." },
-      { symbol: "ᚱ", name: "Raidho", meaning: "Тълкуване: Движение, път и подреждане. Денят носи напредък, ако следваш естествения ритъм, а не хаоса." },
-      { symbol: "ᚲ", name: "Kenaz", meaning: "Тълкуване: Озарение и яснота. Нещо скрито може да се освети и да ти помогне да видиш правилната посока." },
-      { symbol: "ᚷ", name: "Gebo", meaning: "Тълкуване: Обмен, партньорство и баланс. Денят е силен за взаимност, честност и правилно даване и получаване." },
-      { symbol: "ᚹ", name: "Wunjo", meaning: "Тълкуване: Хармония и облекчение. Настъпва по-мека енергия, в която можеш да се свържеш с радостта и спокойствието." },
-      { symbol: "ᚺ", name: "Hagalaz", meaning: "Тълкуване: Неочаквана промяна, която разчиства. Ако нещо се разклати, то прави място за по-истинска структура." },
-      { symbol: "ᚾ", name: "Nauthiz", meaning: "Тълкуване: Ограничение, което учи на търпение. Днес е важно да различиш нуждата от импулса." },
-      { symbol: "ᛁ", name: "Isa", meaning: "Тълкуване: Застой, мълчание и наблюдение. Денят иска покой, дисциплина и повече вътрешно слушане." },
-      { symbol: "ᛃ", name: "Jera", meaning: "Тълкуване: Плод на усилията и естествен цикъл. Резултатите идват, но в правилното за тях време." },
-      { symbol: "ᛇ", name: "Eihwaz", meaning: "Тълкуване: Издръжливост, дълбока трансформация и вътрешен гръбнак. Остани стабилен в прехода." },
-      { symbol: "ᛈ", name: "Perthro", meaning: "Тълкуване: Тайна, интуиция и невидими влияния. Днес не всичко е очевидно, но усетът ти ще те води вярно." },
-      { symbol: "ᛉ", name: "Algiz", meaning: "Тълкуване: Защита и по-висша подкрепа. Денят е подходящ да укрепиш личното си пространство и да следваш вътрешния компас." },
-      { symbol: "ᛋ", name: "Sowilo", meaning: "Тълкуване: Светлина, успех и жизнен импулс. Имаш шанс да напреднеш смело и уверено." },
-      { symbol: "ᛏ", name: "Tiwaz", meaning: "Тълкуване: Чест, решение и целенасочена воля. Избери това, което е правилно, а не само лесно." },
-      { symbol: "ᛒ", name: "Berkano", meaning: "Тълкуване: Растеж, нежност и ново начало. Денят носи мека, но силна енергия за подхранване и развитие." },
-      { symbol: "ᛖ", name: "Ehwaz", meaning: "Тълкуване: Напредък чрез доверие и синхрон. Движението е по-лесно, когато има правилен съюз и ритъм." },
-      { symbol: "ᛗ", name: "Mannaz", meaning: "Тълкуване: Осъзнаване на себе си чрез другите. Важна е зрелостта в комуникацията и ясното присъствие." },
-      { symbol: "ᛚ", name: "Laguz", meaning: "Тълкуване: Интуиция, поток и емоционална дълбочина. Довери се на това, което усещаш под повърхността." },
-      { symbol: "ᛜ", name: "Ingwaz", meaning: "Тълкуване: Събиране на енергия и вътрешно узряване. Нещо значимо се подготвя, макар още да не е напълно видимо." },
-      { symbol: "ᛞ", name: "Dagaz", meaning: "Тълкуване: Пробив, нова светлина и смяна на перспектива. Денят носи шанс за вътрешно или външно просветление." },
-      { symbol: "ᛟ", name: "Othala", meaning: "Тълкуване: Корени, наследство и лична основа. Върни се към това, което е истински ценно и устойчиво за теб." }
+    const translations = {
+      bg: {
+        page_title: "Рунически четения и диагностика", brand: "Рунически четения", nav_services: "Услуги", nav_examples: "Примерни четения", nav_process: "Как протича", nav_daily: "Дневна руна", nav_contact: "Контакт",
+        hero_eyebrow: "Енергия, посока, прозрение", hero_title: "Рунически четения и диагностика", hero_desc: "Яснота, посока и дълбок анализ чрез руническа система", hero_cta: "Запази час", hero_draw: "Изтегли руна",
+        services_eyebrow: "Услуги", services_title: "Рунически насоки за важните теми", services_desc: "Всяко четене е насочено към ясно разбиране на ситуацията, скритите влияния и следващите възможни стъпки.",
+        service_1_title: "Събитийна линия", service_1_desc: "Проследява движението между двама души: настояща енергия, възможно развитие, реални действия и посоката на връзката.",
+        service_2_title: "„Две воли“", service_2_desc: "Сравнителен рунически прочит на две гледни точки, желания или вътрешни конфликти в конкретна ситуация.",
+        service_3_title: "„9 свята“ диагностика", service_3_desc: "Дълбока диагностика на различни нива: емоционално, ментално, енергийно и житейско направление.",
+        service_4_title: "Дневен рунически вектор", service_4_desc: "Кратко насочване за деня с акцент върху основната енергия, урок и най-добрия подход.",
+        examples_eyebrow: "Примерни четения", examples_title: "Визуални примери за твоите услуги", examples_desc: "Тук можеш да показваш примерни подредби, откъси от анализи или снимки от реални четения.", add_file: "Добави файла",
+        ex_1_title: "Събитийна линия между двама", ex_1_desc: "Показва как се оформя линията на събитията между двама души: намерение, движение, активиране на реално действие и възможен резултат.",
+        ex_2_title: "„Две воли“", ex_2_desc: "Навлиза по-дълбоко в полето между двама души: личната воля, взаимното привличане, скритата нишка помежду им и посоката на развитие.",
+        ex_3_title: "„9 свята“ диагностика", ex_3_desc: "Архетипна руническа диагностика, която разглежда различни нива на преживяването като жива карта на процесите, напрежението, движението и вътрешната трансформация.",
+        ex_4_title: "Дневен рунически вектор", ex_4_desc: "Кратък визуален пример за дневна руна, енергията на деня и насоката, която се открива в конкретния момент.",
+        chip_3_visuals: "3 примерни визии", chip_ready_photos: "Готово за снимки", chip_one_visual: "Една примерна визия", chip_ready_photo: "Готово за снимка",
+        process_eyebrow: "Как протича", process_title: "Лесен и ясен процес", process_desc: "Всичко е организирано така, че да получиш отговор без излишно усложнение и с достатъчно дълбочина.",
+        step_1_title: "Пращаш въпрос", step_1_desc: "Споделяш темата или конкретния въпрос, върху който искаш да се направи рунически прочит.",
+        step_2_title: "Получаваш писмен анализ", step_2_desc: "Отговорът е структуриран, ясен и съобразен с твоята конкретна ситуация.",
+        step_3_title: "Включени са руни и подробно тълкуване", step_3_desc: "Ще видиш самите руни, тяхната символика и как работят заедно в твоя казус.",
+        detail_title: "Подход с внимание към детайла", detail_desc: "Руническото четене не е просто отговор „да“ или „не“, а карта на енергии, препятствия и потенциални посоки. Тук фокусът е върху смислен анализ, който да ти помогне да видиш по-ясно ситуацията си.",
+        daily_eyebrow: "Дневна руна", daily_title: "Изтегли своя знак за деня", daily_desc: "Натисни бутона и получи руна от Elder Futhark, за да усетиш посоката и енергията на деня.", draw_rune_btn: "Изтегли руна", rune_waiting_name: "Очаква те руна", rune_waiting_meaning: "Тълкуване: Натисни „Изтегли руна“, за да получиш своя дневен символ и кратко послание.",
+        contact_eyebrow: "Контакт", contact_title: "Запази своя час", contact_desc: "Пиши ми на лично съобщение или email, ако искаш лично четене, диагностика или насока по конкретен въпрос.", contact_line: "Пиши ми на лично съобщение или email", footer: "Рунически четения и диагностика"
+      },
+      en: {
+        page_title: "Runic Readings and Diagnostics", brand: "Runic Readings", nav_services: "Services", nav_examples: "Sample Readings", nav_process: "How It Works", nav_daily: "Daily Rune", nav_contact: "Contact",
+        hero_eyebrow: "Energy, direction, insight", hero_title: "Runic Readings and Diagnostics", hero_desc: "Clarity, direction and deep analysis through a runic system", hero_cta: "Book a Session", hero_draw: "Draw a Rune",
+        services_eyebrow: "Services", services_title: "Runic Guidance for Important Themes", services_desc: "Each reading is focused on understanding the situation clearly, revealing hidden influences, and showing the next possible steps.",
+        service_1_title: "Event Line", service_1_desc: "Follows the movement between two people: current energy, possible development, real actions, and the direction of the connection.",
+        service_2_title: "Two Wills", service_2_desc: "A comparative runic reading of two points of view, desires, or inner conflicts in a specific situation.",
+        service_3_title: "9 Worlds Diagnostics", service_3_desc: "A deep diagnostic across different levels: emotional, mental, energetic, and life direction.",
+        service_4_title: "Daily Runic Vector", service_4_desc: "A short guidance for the day focused on the main energy, the lesson, and the best approach.",
+        examples_eyebrow: "Sample Readings", examples_title: "Visual Examples of Your Services", examples_desc: "Here you can show sample spreads, excerpts from analyses, or images from real readings.", add_file: "Add file",
+        ex_1_title: "Event Line Between Two People", ex_1_desc: "Shows how the line of events between two people takes shape: intention, movement, activation of real action, and a possible outcome.",
+        ex_2_title: "Two Wills", ex_2_desc: "Goes deeper into the field between two people: personal will, mutual attraction, the hidden thread between them, and the direction of development.",
+        ex_3_title: "9 Worlds Diagnostics", ex_3_desc: "An archetypal runic diagnostic that explores different layers of experience as a living map of processes, tension, movement, and inner transformation.",
+        ex_4_title: "Daily Runic Vector", ex_4_desc: "A short visual example of a daily rune, the energy of the day, and the guidance revealed in the present moment.",
+        chip_3_visuals: "3 sample visuals", chip_ready_photos: "Ready for photos", chip_one_visual: "One sample visual", chip_ready_photo: "Ready for photo",
+        process_eyebrow: "How It Works", process_title: "A Clear and Simple Process", process_desc: "Everything is organized so you receive an answer without unnecessary complication and with enough depth.",
+        step_1_title: "You send a question", step_1_desc: "You share the topic or specific question you want the runic reading to focus on.", step_2_title: "You receive a written analysis", step_2_desc: "The answer is structured, clear, and tailored to your exact situation.", step_3_title: "Runes and detailed interpretation included", step_3_desc: "You will see the runes themselves, their symbolism, and how they work together in your case.",
+        detail_title: "A Detail-Oriented Approach", detail_desc: "A runic reading is not simply a yes-or-no answer, but a map of energies, obstacles, and possible directions. The focus here is meaningful analysis that helps you see your situation more clearly.",
+        daily_eyebrow: "Daily Rune", daily_title: "Draw Your Sign for the Day", daily_desc: "Press the button and receive a rune from the Elder Futhark to feel the direction and energy of the day.", draw_rune_btn: "Draw a Rune", rune_waiting_name: "A rune awaits you", rune_waiting_meaning: "Interpretation: Press “Draw a Rune” to receive your daily symbol and a short message.",
+        contact_eyebrow: "Contact", contact_title: "Book Your Session", contact_desc: "Write to me in a private message or by email if you want a personal reading, diagnostics, or guidance on a specific question.", contact_line: "Write to me in a private message or by email", footer: "Runic Readings and Diagnostics"
+      },
+      ro: {
+        page_title: "Citiri Runice si Diagnostic", brand: "Citiri Runice", nav_services: "Servicii", nav_examples: "Exemple de Citiri", nav_process: "Cum Decurge", nav_daily: "Runa Zilei", nav_contact: "Contact",
+        hero_eyebrow: "Energie, directie, intuitie", hero_title: "Citiri Runice si Diagnostic", hero_desc: "Claritate, directie si analiza profunda printr-un sistem runic", hero_cta: "Rezerva o Sesiune", hero_draw: "Extrage o Runa",
+        services_eyebrow: "Servicii", services_title: "Indrumare Runica pentru Temele Importante", services_desc: "Fiecare citire este orientata spre intelegerea clara a situatiei, influentelor ascunse si urmatorilor pasi posibili.",
+        service_1_title: "Linia Evenimentelor", service_1_desc: "Urmaraste miscarea dintre doua persoane: energia actuala, dezvoltarea posibila, actiunile reale si directia legaturii.",
+        service_2_title: "Doua Vointe", service_2_desc: "O citire runica comparativa a doua perspective, dorinte sau conflicte interioare intr-o situatie concreta.",
+        service_3_title: "Diagnostic 9 Lumi", service_3_desc: "Un diagnostic profund pe niveluri diferite: emotional, mental, energetic si directia vietii.",
+        service_4_title: "Vectorul Runic Zilnic", service_4_desc: "O ghidare scurta pentru zi, concentrata pe energia principala, lectia si cea mai buna abordare.",
+        examples_eyebrow: "Exemple de Citiri", examples_title: "Exemple Vizuale ale Serviciilor Tale", examples_desc: "Aici poti arata exemple de etalari, fragmente din analize sau imagini din citiri reale.", add_file: "Adauga fisierul",
+        ex_1_title: "Linia Evenimentelor intre Doua Persoane", ex_1_desc: "Arata cum se formeaza linia evenimentelor dintre doua persoane: intentie, miscare, activarea unei actiuni reale si un rezultat posibil.",
+        ex_2_title: "Doua Vointe", ex_2_desc: "Patrunde mai adanc in campul dintre doua persoane: vointa personala, atractia reciproca, firul ascuns dintre ei si directia dezvoltarii.",
+        ex_3_title: "Diagnostic 9 Lumi", ex_3_desc: "Un diagnostic runic arhetipal care exploreaza diferite niveluri ale experientei ca pe o harta vie a proceselor, tensiunii, miscarii si transformarii interioare.",
+        ex_4_title: "Vectorul Runic Zilnic", ex_4_desc: "Un exemplu vizual scurt pentru runa zilei, energia zilei si directia care se deschide in momentul prezent.",
+        chip_3_visuals: "3 imagini exemplu", chip_ready_photos: "Pregatit pentru imagini", chip_one_visual: "O imagine exemplu", chip_ready_photo: "Pregatit pentru imagine",
+        process_eyebrow: "Cum Decurge", process_title: "Un Proces Clar si Simplu", process_desc: "Totul este organizat astfel incat sa primesti un raspuns fara complicatii inutile si cu suficienta profunzime.",
+        step_1_title: "Trimiti o intrebare", step_1_desc: "Impartasesti tema sau intrebarea concreta asupra careia vrei sa se faca citirea runica.", step_2_title: "Primesti o analiza scrisa", step_2_desc: "Raspunsul este structurat, clar si adaptat situatiei tale concrete.", step_3_title: "Rune si interpretare detaliata incluse", step_3_desc: "Vei vedea runele, simbolistica lor si felul in care lucreaza impreuna in cazul tau.",
+        detail_title: "Abordare cu Atentie la Detalii", detail_desc: "O citire runica nu este doar un raspuns de tip da sau nu, ci o harta a energiilor, obstacolelor si directiilor posibile. Accentul este pus pe o analiza cu sens, care te ajuta sa vezi mai clar situatia ta.",
+        daily_eyebrow: "Runa Zilei", daily_title: "Extrage Semnul Tau pentru Azi", daily_desc: "Apasa butonul si primeste o runa din Elder Futhark pentru a simti directia si energia zilei.", draw_rune_btn: "Extrage o Runa", rune_waiting_name: "O runa te asteapta", rune_waiting_meaning: "Interpretare: Apasa „Extrage o Runa” pentru a primi simbolul zilei si un mesaj scurt.",
+        contact_eyebrow: "Contact", contact_title: "Rezerva-ti Sesiunea", contact_desc: "Scrie-mi in mesaj privat sau pe email daca vrei o citire personala, diagnostic sau indrumare pentru o intrebare concreta.", contact_line: "Scrie-mi in mesaj privat sau pe email", footer: "Citiri Runice si Diagnostic"
+      }
+    };
+
+    const runeBase = [
+      { symbol: "ᚠ", name: "Fehu", meanings: { bg: "Тълкуване: Поток, ресурс и нова жизнена енергия. Денят е подходящ за действие, материален напредък и ясни намерения.", en: "Interpretation: Flow, resources, and renewed life force. The day supports action, material progress, and clear intentions.", ro: "Interpretare: Flux, resurse si energie noua de viata. Ziua este potrivita pentru actiune, progres material si intentii clare." } },
+      { symbol: "ᚢ", name: "Uruz", meanings: { bg: "Тълкуване: Сила, устойчивост и вътрешна мощ. Довери се на инстинкта си и не подценявай собствения си ресурс.", en: "Interpretation: Strength, endurance, and inner power. Trust your instinct and do not underestimate your own resource.", ro: "Interpretare: Forta, rezistenta si putere interioara. Ai incredere in instinctul tau si nu subestima resursele proprii." } },
+      { symbol: "ᚦ", name: "Thurisaz", meanings: { bg: "Тълкуване: Пауза преди важен ход. Нужно е да пазиш границите си и да действаш осъзнато, а не прибързано.", en: "Interpretation: A pause before an important move. Protect your boundaries and act consciously rather than impulsively.", ro: "Interpretare: O pauza inaintea unei miscari importante. Este necesar sa iti protejezi limitele si sa actionezi constient, nu pripit." } },
+      { symbol: "ᚨ", name: "Ansuz", meanings: { bg: "Тълкуване: Послание, разговор или знак. Обърни внимание на думите, сънищата и синхроничностите около теб.", en: "Interpretation: A message, conversation, or sign. Pay attention to words, dreams, and synchronicities around you.", ro: "Interpretare: Un mesaj, o conversatie sau un semn. Fii atent la cuvinte, vise si sincronicitatile din jurul tau." } },
+      { symbol: "ᚱ", name: "Raidho", meanings: { bg: "Тълкуване: Движение, път и подреждане. Денят носи напредък, ако следваш естествения ритъм, а не хаоса.", en: "Interpretation: Movement, path, and alignment. The day brings progress if you follow natural rhythm rather than chaos.", ro: "Interpretare: Miscare, drum si aliniere. Ziua aduce progres daca urmezi ritmul firesc, nu haosul." } },
+      { symbol: "ᚲ", name: "Kenaz", meanings: { bg: "Тълкуване: Озарение и яснота. Нещо скрито може да се освети и да ти помогне да видиш правилната посока.", en: "Interpretation: Illumination and clarity. Something hidden may become visible and help you see the right direction.", ro: "Interpretare: Iluminare si claritate. Ceva ascuns poate iesi la lumina si te poate ajuta sa vezi directia corecta." } },
+      { symbol: "ᚷ", name: "Gebo", meanings: { bg: "Тълкуване: Обмен, партньорство и баланс. Денят е силен за взаимност, честност и правилно даване и получаване.", en: "Interpretation: Exchange, partnership, and balance. The day is strong for reciprocity, honesty, and healthy giving and receiving.", ro: "Interpretare: Schimb, parteneriat si echilibru. Ziua este favorabila reciprocitatii, sinceritatii si unui schimb sanatos." } },
+      { symbol: "ᚹ", name: "Wunjo", meanings: { bg: "Тълкуване: Хармония и облекчение. Настъпва по-мека енергия, в която можеш да се свържеш с радостта и спокойствието.", en: "Interpretation: Harmony and relief. A softer energy arrives, allowing you to connect with joy and peace.", ro: "Interpretare: Armonie si usurare. Vine o energie mai blanda prin care te poti conecta cu bucuria si linistea." } },
+      { symbol: "ᚺ", name: "Hagalaz", meanings: { bg: "Тълкуване: Неочаквана промяна, която разчиства. Ако нещо се разклати, то прави място за по-истинска структура.", en: "Interpretation: An unexpected change that clears the way. If something shakes, it may be making space for a truer structure.", ro: "Interpretare: O schimbare neasteptata care curata terenul. Daca ceva se zdruncina, poate face loc unei structuri mai autentice." } },
+      { symbol: "ᚾ", name: "Nauthiz", meanings: { bg: "Тълкуване: Ограничение, което учи на търпение. Днес е важно да различиш нуждата от импулса.", en: "Interpretation: A limitation that teaches patience. Today it is important to distinguish need from impulse.", ro: "Interpretare: O limitare care te invata rabdarea. Astazi este important sa deosebesti nevoia de impuls." } },
+      { symbol: "ᛁ", name: "Isa", meanings: { bg: "Тълкуване: Застой, мълчание и наблюдение. Денят иска покой, дисциплина и повече вътрешно слушане.", en: "Interpretation: Stillness, silence, and observation. The day asks for calm, discipline, and deeper inner listening.", ro: "Interpretare: Stagnare, tacere si observare. Ziua cere calm, disciplina si mai multa ascultare interioara." } },
+      { symbol: "ᛃ", name: "Jera", meanings: { bg: "Тълкуване: Плод на усилията и естествен цикъл. Резултатите идват, но в правилното за тях време.", en: "Interpretation: The fruit of effort and a natural cycle. Results arrive, but in their proper time.", ro: "Interpretare: Rodul efortului si un ciclu firesc. Rezultatele vin, dar la timpul lor potrivit." } },
+      { symbol: "ᛇ", name: "Eihwaz", meanings: { bg: "Тълкуване: Издръжливост, дълбока трансформация и вътрешен гръбнак. Остани стабилен в прехода.", en: "Interpretation: Endurance, deep transformation, and inner backbone. Stay steady through transition.", ro: "Interpretare: Rezistenta, transformare profunda si coloana interioara. Ramai stabil in timpul tranzitiei." } },
+      { symbol: "ᛈ", name: "Perthro", meanings: { bg: "Тълкуване: Тайна, интуиция и невидими влияния. Днес не всичко е очевидно, но усетът ти ще те води вярно.", en: "Interpretation: Mystery, intuition, and unseen influences. Not everything is obvious today, but your inner sense can guide you well.", ro: "Interpretare: Mister, intuitie si influente nevazute. Astazi nu totul este evident, dar intuitia te poate ghida corect." } },
+      { symbol: "ᛉ", name: "Algiz", meanings: { bg: "Тълкуване: Защита и по-висша подкрепа. Денят е подходящ да укрепиш личното си пространство и да следваш вътрешния компас.", en: "Interpretation: Protection and higher support. The day is suitable for strengthening your personal space and following your inner compass.", ro: "Interpretare: Protectie si sprijin superior. Ziua este potrivita pentru a-ti intari spatiul personal si a urma busola interioara." } },
+      { symbol: "ᛋ", name: "Sowilo", meanings: { bg: "Тълкуване: Светлина, успех и жизнен импулс. Имаш шанс да напреднеш смело и уверено.", en: "Interpretation: Light, success, and vital impulse. You have a chance to move forward boldly and confidently.", ro: "Interpretare: Lumina, succes si impuls vital. Ai sansa sa inaintezi cu curaj si incredere." } },
+      { symbol: "ᛏ", name: "Tiwaz", meanings: { bg: "Тълкуване: Чест, решение и целенасочена воля. Избери това, което е правилно, а не само лесно.", en: "Interpretation: Honor, decision, and purposeful will. Choose what is right, not merely what is easy.", ro: "Interpretare: Onoare, decizie si vointa orientata. Alege ceea ce este corect, nu doar ceea ce este usor." } },
+      { symbol: "ᛒ", name: "Berkano", meanings: { bg: "Тълкуване: Растеж, нежност и ново начало. Денят носи мека, но силна енергия за подхранване и развитие.", en: "Interpretation: Growth, tenderness, and a new beginning. The day carries a gentle yet strong energy for nurturing and development.", ro: "Interpretare: Crestere, blandete si un nou inceput. Ziua aduce o energie blanda, dar puternica, pentru hranire si dezvoltare." } },
+      { symbol: "ᛖ", name: "Ehwaz", meanings: { bg: "Тълкуване: Напредък чрез доверие и синхрон. Движението е по-лесно, когато има правилен съюз и ритъм.", en: "Interpretation: Progress through trust and synchronicity. Movement becomes easier when there is the right alliance and rhythm.", ro: "Interpretare: Progres prin incredere si sincron. Miscarea este mai usoara atunci cand exista alianta potrivita si ritm." } },
+      { symbol: "ᛗ", name: "Mannaz", meanings: { bg: "Тълкуване: Осъзнаване на себе си чрез другите. Важна е зрелостта в комуникацията и ясното присъствие.", en: "Interpretation: Self-awareness through others. Maturity in communication and clear presence are important now.", ro: "Interpretare: Constientizare de sine prin ceilalti. Maturitatea in comunicare si prezenta clara sunt importante acum." } },
+      { symbol: "ᛚ", name: "Laguz", meanings: { bg: "Тълкуване: Интуиция, поток и емоционална дълбочина. Довери се на това, което усещаш под повърхността.", en: "Interpretation: Intuition, flow, and emotional depth. Trust what you sense beneath the surface.", ro: "Interpretare: Intuitie, flux si profunzime emotionala. Ai incredere in ceea ce simti sub suprafata." } },
+      { symbol: "ᛜ", name: "Ingwaz", meanings: { bg: "Тълкуване: Събиране на енергия и вътрешно узряване. Нещо значимо се подготвя, макар още да не е напълно видимо.", en: "Interpretation: Gathering energy and inner ripening. Something meaningful is preparing itself, even if it is not fully visible yet.", ro: "Interpretare: Acumulare de energie si maturizare interioara. Ceva important se pregateste, chiar daca nu este inca pe deplin vizibil." } },
+      { symbol: "ᛞ", name: "Dagaz", meanings: { bg: "Тълкуване: Пробив, нова светлина и смяна на перспектива. Денят носи шанс за вътрешно или външно просветление.", en: "Interpretation: Breakthrough, new light, and a shift in perspective. The day brings a chance for inner or outer illumination.", ro: "Interpretare: Revelatie, lumina noua si schimbare de perspectiva. Ziua aduce sansa unei iluminari interioare sau exterioare." } },
+      { symbol: "ᛟ", name: "Othala", meanings: { bg: "Тълкуване: Корени, наследство и лична основа. Върни се към това, което е истински ценно и устойчиво за теб.", en: "Interpretation: Roots, inheritance, and personal foundation. Return to what is truly valuable and lasting for you.", ro: "Interpretare: Radacini, mostenire si temelie personala. Intoarce-te la ceea ce este cu adevarat valoros si stabil pentru tine." } }
     ];
 
     const drawRuneButton = document.getElementById("drawRuneButton");
     const runeSymbol = document.getElementById("runeSymbol");
     const runeName = document.getElementById("runeName");
     const runeMeaning = document.getElementById("runeMeaning");
+    const langButtons = document.querySelectorAll(".lang-btn");
+    let currentLang = "bg";
+    let currentRune = null;
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.title = translations[lang].page_title;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (translations[lang][key]) element.textContent = translations[lang][key];
+      });
+      langButtons.forEach((button) => button.classList.toggle("active", button.dataset.lang === lang));
+      if (currentRune) {
+        runeName.textContent = currentRune.name;
+        runeMeaning.textContent = currentRune.meanings[lang];
+      } else {
+        runeName.textContent = translations[lang].rune_waiting_name;
+        runeMeaning.textContent = translations[lang].rune_waiting_meaning;
+      }
+    }
 
     drawRuneButton.addEventListener("click", () => {
-      const selectedRune = runes[Math.floor(Math.random() * runes.length)];
-      runeSymbol.textContent = selectedRune.symbol;
-      runeName.textContent = selectedRune.name;
-      runeMeaning.textContent = selectedRune.meaning;
+      currentRune = runeBase[Math.floor(Math.random() * runeBase.length)];
+      runeSymbol.textContent = currentRune.symbol;
+      runeName.textContent = currentRune.name;
+      runeMeaning.textContent = currentRune.meanings[currentLang];
     });
+
+    langButtons.forEach((button) => button.addEventListener("click", () => setLanguage(button.dataset.lang)));
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -653,9 +437,9 @@
       });
     }, { threshold: 0.16 });
 
-    document.querySelectorAll(".reveal").forEach((element) => {
-      observer.observe(element);
-    });
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    setLanguage("bg");
   </script>
 </body>
 </html>
+```
