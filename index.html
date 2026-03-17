@@ -48,15 +48,8 @@
       opacity: 0.55;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
     .container {
       width: min(calc(100% - 32px), var(--max-width));
@@ -197,7 +190,6 @@
     }
 
     h1 { font-size: clamp(2.6rem, 8vw, 5rem); }
-
     h2 {
       font-size: clamp(2rem, 5vw, 3.1rem);
       text-align: center;
@@ -331,6 +323,8 @@
     .example-placeholder {
       width: 100%;
       min-height: 220px;
+      border: 0;
+      border-radius: 0;
       display: none;
       place-items: center;
       text-align: center;
@@ -339,6 +333,7 @@
       font-family: Georgia, "Times New Roman", serif;
       line-height: 1.5;
       background: rgba(10, 10, 15, 0.28);
+      font-size: 0.95rem;
     }
 
     .example-content {
@@ -384,22 +379,6 @@
       color: var(--gold-soft);
       font-weight: 700;
       cursor: pointer;
-    }
-
-    .example-meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-
-    .example-chip {
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.18);
-      background: rgba(212, 175, 55, 0.06);
-      color: var(--gold-soft);
-      font-size: 0.9rem;
     }
 
     .split {
@@ -521,12 +500,13 @@
       .nav, .nav-group { flex-direction: column; }
       .nav-links { gap: 12px; font-size: 0.88rem; }
       .hero-card { padding: 56px 22px 34px; }
-      .services-grid, .steps-grid, .split, .examples-grid {
+      .services-grid,
+      .steps-grid,
+      .split,
+      .examples-grid {
         grid-template-columns: 1fr;
       }
-      .card, .rune-panel, .contact-box {
-        padding: 24px 20px;
-      }
+      .card, .rune-panel, .contact-box { padding: 24px 20px; }
       .step { grid-template-columns: 1fr; }
       .step-number { margin-bottom: 4px; }
     }
@@ -604,10 +584,7 @@
       <div class="container">
         <div class="reveal">
           <span class="eyebrow" data-i18n="examples_eyebrow">Примерни четения</span>
-          <h2 data-i18n="examples_title">Визуални примери за твоите услуги</h2>
-          <p class="section-subtitle" data-i18n="examples_desc">Тук можеш да показваш примерни подредби, откъси от анализи или снимки от реални четения.</p>
         </div>
-
         <div class="grid examples-grid">
           <article class="card example-card reveal">
             <div class="example-visual">
@@ -738,13 +715,11 @@
         nav_process: "Как протича",
         nav_daily: "Дневна руна",
         nav_contact: "Контакт",
-
         hero_eyebrow: "Енергия, посока, прозрение",
         hero_title: "Рунически четения и диагностика",
         hero_desc: "Яснота, посока и дълбок анализ чрез руническа система",
         hero_cta: "Запази час",
         hero_draw: "Изтегли руна",
-
         services_eyebrow: "Услуги",
         services_title: "Рунически насоки за важните теми",
         services_desc: "Всяко четене е насочено към ясно разбиране на ситуацията, скритите влияния и следващите възможни стъпки.",
@@ -756,12 +731,8 @@
         service_3_desc: "Дълбока диагностика на различни нива: емоционално, ментално, енергийно и житейско направление.",
         service_4_title: "Дневен рунически вектор",
         service_4_desc: "Кратко насочване за деня с акцент върху основната енергия, урок и най-добрия подход.",
-
         examples_eyebrow: "Примерни четения",
-        examples_title: "Визуални примери за твоите услуги",
-        examples_desc: "Тук можеш да показваш примерни подредби, откъси от анализи или снимки от реални четения.",
         add_file: "Добави файла",
-
         process_eyebrow: "Как протича",
         process_title: "Лесен и ясен процес",
         process_desc: "Всичко е организирано така, че да получиш отговор без излишно усложнение и с достатъчно дълбочина.",
@@ -773,21 +744,18 @@
         step_3_desc: "Ще видиш самите руни, тяхната символика и как работят заедно в твоя казус.",
         detail_title: "Подход с внимание към детайла",
         detail_desc: "Руническото четене не е просто отговор „да“ или „не“, а карта на енергии, препятствия и потенциални посоки. Тук фокусът е върху смислен анализ, който да ти помогне да видиш по-ясно ситуацията си.",
-
         daily_eyebrow: "Дневна руна",
         daily_title: "Изтегли своя знак за деня",
         daily_desc: "Натисни бутона и получи руна от Elder Futhark, за да усетиш посоката и енергията на деня.",
         draw_rune_btn: "Изтегли руна",
         rune_waiting_name: "Очаква те руна",
         rune_waiting_meaning: "Тълкуване: Натисни „Изтегли руна“, за да получиш своя дневен символ и кратко послание.",
-
         contact_eyebrow: "Контакт",
         contact_title: "Запази своя час",
         contact_desc: "Пиши ми на лично съобщение или email, ако искаш лично четене, диагностика или насока по конкретен въпрос.",
         contact_line: "Пиши ми на лично съобщение или email",
         footer: "Рунически четения и диагностика"
       },
-
       en: {
         page_title: "Runic Readings and Diagnostics",
         brand: "Runic Readings",
@@ -796,13 +764,11 @@
         nav_process: "How It Works",
         nav_daily: "Daily Rune",
         nav_contact: "Contact",
-
         hero_eyebrow: "Energy, direction, insight",
         hero_title: "Runic Readings and Diagnostics",
         hero_desc: "Clarity, direction and deep analysis through a runic system",
         hero_cta: "Book a Session",
         hero_draw: "Draw a Rune",
-
         services_eyebrow: "Services",
         services_title: "Runic Guidance for Important Themes",
         services_desc: "Each reading is focused on understanding the situation clearly, revealing hidden influences, and showing the next possible steps.",
@@ -814,12 +780,8 @@
         service_3_desc: "A deep diagnostic across different levels: emotional, mental, energetic, and life direction.",
         service_4_title: "Daily Runic Vector",
         service_4_desc: "A short guidance for the day focused on the main energy, the lesson, and the best approach.",
-
         examples_eyebrow: "Sample Readings",
-        examples_title: "Visual Examples of Your Services",
-        examples_desc: "Here you can show sample spreads, excerpts from analyses, or images from real readings.",
         add_file: "Add file",
-
         process_eyebrow: "How It Works",
         process_title: "A Clear and Simple Process",
         process_desc: "Everything is organized so you receive an answer without unnecessary complication and with enough depth.",
@@ -831,21 +793,18 @@
         step_3_desc: "You will see the runes themselves, their symbolism, and how they work together in your case.",
         detail_title: "A Detail-Oriented Approach",
         detail_desc: "A runic reading is not simply a yes-or-no answer, but a map of energies, obstacles, and possible directions. The focus here is meaningful analysis that helps you see your situation more clearly.",
-
         daily_eyebrow: "Daily Rune",
         daily_title: "Draw Your Sign for the Day",
         daily_desc: "Press the button and receive a rune from the Elder Futhark to feel the direction and energy of the day.",
         draw_rune_btn: "Draw a Rune",
         rune_waiting_name: "A rune awaits you",
         rune_waiting_meaning: "Interpretation: Press “Draw a Rune” to receive your daily symbol and a short message.",
-
         contact_eyebrow: "Contact",
         contact_title: "Book Your Session",
         contact_desc: "Write to me in a private message or by email if you want a personal reading, diagnostics, or guidance on a specific question.",
         contact_line: "Write to me in a private message or by email",
         footer: "Runic Readings and Diagnostics"
       },
-
       ro: {
         page_title: "Citiri Runice si Diagnostic",
         brand: "Citiri Runice",
@@ -854,13 +813,11 @@
         nav_process: "Cum Decurge",
         nav_daily: "Runa Zilei",
         nav_contact: "Contact",
-
         hero_eyebrow: "Energie, directie, intuitie",
         hero_title: "Citiri Runice si Diagnostic",
         hero_desc: "Claritate, directie si analiza profunda printr-un sistem runic",
         hero_cta: "Rezerva o Sesiune",
         hero_draw: "Extrage o Runa",
-
         services_eyebrow: "Servicii",
         services_title: "Indrumare Runica pentru Temele Importante",
         services_desc: "Fiecare citire este orientata spre intelegerea clara a situatiei, influentelor ascunse si urmatorilor pasi posibili.",
@@ -872,12 +829,8 @@
         service_3_desc: "Un diagnostic profund pe niveluri diferite: emotional, mental, energetic si directia vietii.",
         service_4_title: "Vectorul Runic Zilnic",
         service_4_desc: "O ghidare scurta pentru zi, concentrata pe energia principala, lectia si cea mai buna abordare.",
-
         examples_eyebrow: "Exemple de Citiri",
-        examples_title: "Exemple Vizuale ale Serviciilor Tale",
-        examples_desc: "Aici poti arata exemple de etalari, fragmente din analize sau imagini din citiri reale.",
         add_file: "Adauga fisierul",
-
         process_eyebrow: "Cum Decurge",
         process_title: "Un Proces Clar si Simplu",
         process_desc: "Totul este organizat astfel incat sa primesti un raspuns fara complicatii inutile si cu suficienta profunzime.",
@@ -889,14 +842,12 @@
         step_3_desc: "Vei vedea runele, simbolistica lor si felul in care lucreaza impreuna in cazul tau.",
         detail_title: "Abordare cu Atentie la Detalii",
         detail_desc: "O citire runica nu este doar un raspuns de tip da sau nu, ci o harta a energiilor, obstacolelor si directiilor posibile. Accentul este pus pe o analiza cu sens, care te ajuta sa vezi mai clar situatia ta.",
-
         daily_eyebrow: "Runa Zilei",
         daily_title: "Extrage Semnul Tau pentru Azi",
         daily_desc: "Apasa butonul si primeste o runa din Elder Futhark pentru a simti directia si energia zilei.",
         draw_rune_btn: "Extrage o Runa",
         rune_waiting_name: "O runa te asteapta",
         rune_waiting_meaning: "Interpretare: Apasa „Extrage o Runa” pentru a primi simbolul zilei si un mesaj scurt.",
-
         contact_eyebrow: "Contact",
         contact_title: "Rezerva-ti Sesiunea",
         contact_desc: "Scrie-mi in mesaj privat sau pe email daca vrei o citire personala, diagnostic sau indrumare pentru o intrebare concreta.",
@@ -954,7 +905,6 @@
           <p>Когато работим с тази подредба, всъщност наблюдаваме как се оформя самата линия на събитията – от намерението, през действието, до възможния резултат.</p>
           <p>Така руните се превръщат не просто в символи, а в карта на живия процес между двама души.</p>
           <p>Йера Ейв</p>
-          <div class="example-meta"><span class="example-chip">Една примерна визия</span><span class="example-chip">Готово за снимка</span></div>
         `,
         ex2: `
           <h3>„Две воли“</h3>
@@ -988,7 +938,6 @@
           <p>Но винаги носи истина за полето между двамата души.</p>
           <p>А от тази истина започва свободата да избираш съзнателно.</p>
           <p>С уважение към нишката, която свързва,<br>Йера Ейв</p>
-          <div class="example-meta"><span class="example-chip">Една примерна визия</span><span class="example-chip">Готово за снимка</span></div>
         `,
         ex3: `
           <h3>„9 свята“ диагностика</h3>
@@ -1002,7 +951,6 @@
           <p>Методът не дава готови съдби. Той предлага перспектива. Когато човек види своята вътрешна карта, решенията стават по-спокойни, а движението – по-съзнателно.</p>
           <p>Разбирането на процеса е първата стъпка към промяната.</p>
           <p>Йера Ейв</p>
-          <div class="example-meta"><span class="example-chip">Една примерна визия</span><span class="example-chip">Готово за снимка</span></div>
         `,
         ex4: `
           <h3>Дневен рунически вектор</h3>
@@ -1019,10 +967,8 @@
           <p>какъв е най-правилният начин за реакция</p>
           <p>Тази диагностика не дава абстрактни насоки, а проследява жив процес – денят като поле, в което се разгръщат действия, избори и последствия.</p>
           <p>Чрез нея можеш да видиш не само какво носи денят, но и как да се движиш в него с яснота, осъзнатост и вътрешна стабилност.</p>
-          <div class="example-meta"><span class="example-chip">Една примерна визия</span><span class="example-chip">Готово за снимка</span></div>
         `
       },
-
       en: {
         ex1: `
           <h3>Event Line Between Two People</h3>
@@ -1038,7 +984,6 @@
           <p>When we work with this spread, we are actually observing how the very line of events takes shape, from intention, through action, to a possible outcome.</p>
           <p>In this way, the runes become not just symbols, but a map of the living process between two souls.</p>
           <p>Yera Eiv</p>
-          <div class="example-meta"><span class="example-chip">One sample visual</span><span class="example-chip">Ready for photo</span></div>
         `,
         ex2: `
           <h3>Two Wills</h3>
@@ -1072,7 +1017,6 @@
           <p>But it always brings truth about the field between the two souls.</p>
           <p>And from that truth begins the freedom to choose consciously.</p>
           <p>With respect for the thread that connects,<br>Yera Eiv</p>
-          <div class="example-meta"><span class="example-chip">One sample visual</span><span class="example-chip">Ready for photo</span></div>
         `,
         ex3: `
           <h3>9 Worlds Diagnostics</h3>
@@ -1086,7 +1030,6 @@
           <p>This method does not hand out ready-made destinies. It offers perspective. When a person sees their inner map, decisions become calmer and movement becomes more conscious.</p>
           <p>Understanding the process is the first step toward change.</p>
           <p>Yera Eiv</p>
-          <div class="example-meta"><span class="example-chip">One sample visual</span><span class="example-chip">Ready for photo</span></div>
         `,
         ex4: `
           <h3>Daily Runic Vector</h3>
@@ -1103,10 +1046,8 @@
           <p>what the most aligned response is</p>
           <p>This diagnostic does not give abstract guidance, but follows a living process: the day as a field in which actions, choices, and consequences unfold.</p>
           <p>Through it, you can see not only what the day brings, but also how to move through it with clarity, awareness, and inner stability.</p>
-          <div class="example-meta"><span class="example-chip">One sample visual</span><span class="example-chip">Ready for photo</span></div>
         `
       },
-
       ro: {
         ex1: `
           <h3>Linia Evenimentelor intre Doua Persoane</h3>
@@ -1122,7 +1063,6 @@
           <p>Cand lucram cu aceasta etalare, observam cum prinde contur chiar linia evenimentelor, de la intentie, prin actiune, pana la un rezultat posibil.</p>
           <p>Astfel, runele devin nu doar simboluri, ci o harta a procesului viu dintre doua suflete.</p>
           <p>Yera Eiv</p>
-          <div class="example-meta"><span class="example-chip">O imagine exemplu</span><span class="example-chip">Pregatit pentru imagine</span></div>
         `,
         ex2: `
           <h3>Doua Vointe</h3>
@@ -1156,7 +1096,6 @@
           <p>Dar aduce intotdeauna adevar despre campul dintre cele doua suflete.</p>
           <p>Iar din acest adevar incepe libertatea de a alege constient.</p>
           <p>Cu respect pentru firul care leaga,<br>Yera Eiv</p>
-          <div class="example-meta"><span class="example-chip">O imagine exemplu</span><span class="example-chip">Pregatit pentru imagine</span></div>
         `,
         ex3: `
           <h3>Diagnostic 9 Lumi</h3>
@@ -1170,7 +1109,6 @@
           <p>Metoda nu ofera destine gata facute. Ea ofera perspectiva. Cand omul isi vede harta interioara, deciziile devin mai calme, iar miscarea devine mai constienta.</p>
           <p>Intelegerea procesului este primul pas catre schimbare.</p>
           <p>Yera Eiv</p>
-          <div class="example-meta"><span class="example-chip">O imagine exemplu</span><span class="example-chip">Pregatit pentru imagine</span></div>
         `,
         ex4: `
           <h3>Vectorul Runic Zilnic</h3>
@@ -1187,7 +1125,6 @@
           <p>care este cel mai potrivit mod de reactie</p>
           <p>Aceasta diagnosticare nu ofera indrumari abstracte, ci urmareste un proces viu: ziua ca pe un camp in care se desfasoara actiuni, alegeri si consecinte.</p>
           <p>Prin ea poti vedea nu doar ce aduce ziua, ci si cum sa te misti prin ea cu claritate, constienta si stabilitate interioara.</p>
-          <div class="example-meta"><span class="example-chip">O imagine exemplu</span><span class="example-chip">Pregatit pentru imagine</span></div>
         `
       }
     };
@@ -1218,15 +1155,14 @@
         }
 
         const title = contentBlock.querySelector("h3");
-        const meta = contentBlock.querySelector(".example-meta");
         const textNodes = Array.from(contentBlock.querySelectorAll("p"));
 
-        if (!title || !meta || textNodes.length <= 2) return;
+        if (!title || textNodes.length <= 2) return;
 
         const wrapper = document.createElement("div");
         wrapper.className = "example-text";
         textNodes.forEach((node) => wrapper.appendChild(node));
-        contentBlock.insertBefore(wrapper, meta);
+        contentBlock.appendChild(wrapper);
 
         const button = document.createElement("button");
         button.type = "button";
@@ -1237,8 +1173,7 @@
           button.textContent = expanded ? readMoreLabels[currentLang].less : readMoreLabels[currentLang].more;
         });
 
-        contentBlock.insertBefore(button, meta);
-        contentBlock._readMoreButton = button;
+        contentBlock.appendChild(button);
       });
     }
 
@@ -1248,7 +1183,6 @@
         const html = exampleContentTranslations[lang][exampleId];
         if (html) block.innerHTML = html.trim();
       });
-
       setupExpandableExampleCards();
     }
 
